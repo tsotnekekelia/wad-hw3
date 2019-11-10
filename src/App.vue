@@ -9,15 +9,15 @@
 
                     <component v-bind:is="selected"></component>
 
-                    <div class="controls">
-                        <button v-for="container in containers" :key="container" @click="selected = container"
-                        :class="['pill', {active: selected === container}]">
-                            {{ container }}
-                        </button>
-
-                    </div>
                 </div>
             </section>
+            <div class="controls">
+                <button v-for="container in containers" :key="container" @click="selected = container"
+                        :class="['pill', {active: selected === container}]">
+                    {{ container }}
+                </button>
+
+            </div>
         </section>
         <footer>
             <ul class="links">
@@ -245,7 +245,4 @@
         min-width: 135px;
     }
 
-    #add-course {
-        display: none;
-    }
 </style>

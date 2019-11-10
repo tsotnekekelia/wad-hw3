@@ -10,35 +10,17 @@
                 <th>Grade</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody v-for="(course, index) in courses" v-bind:key="course.name">
             <tr>
-                <td>1</td>
-                <td>Agile software development</td>
-                <td>1</td>
-                <td>82</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>System modeling</td>
-                <td>1</td>
-                <td>85</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Object-oriented programming</td>
-                <td>2</td>
-                <td>99</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Estonian language Level A2</td>
-                <td>2</td>
-                <td>65</td>
+                <td>{{index}}</td>
+                <td>{{course.name}}</td>
+                <td>{{course.semester}}</td>
+                <td>{{course.grade}}</td>
             </tr>
             </tbody>
         </table>
-        <button id="add-course-button" class="blue-button">+</button>
-        <span id="add-course">
+        <button @click="toggleAdding()" id="add-course-button" class="blue-button">+</button>
+        <span v-if="courseOpen" id="add-course">
                                 <input class="input" type="text" placeholder="Course title" id="title">
                                 <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
                                 <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
@@ -50,10 +32,51 @@
 
 <script>
     export default {
-        name: "Courses"
+        name: "Courses",
+        data: function () {
+            return {
+                courseOpen: false,
+                courses: [
+                    {
+                        name: "Agile Software Development",
+                        semester: 1,
+                        grade: 82
+                    },
+                    {
+                        name: "System modeling",
+                        semester: 1,
+                        grade: 85
+                    },
+                    {
+                        name: "Object-oriented programming",
+                        semester: 2,
+                        grade: 99
+                    },
+                    {
+                        name: "Estonian language A2",
+                        semester: 2,
+                        grade: 65}
+                ]
+            }
+        },
+        methods: {
+            toggleAdding: function () {
+                this.courseOpen = !this.courseOpen
+            },
+            addRow: function () {
+
+            }
+        }
     }
 </script>
 
 <style scoped>
 
+    #courses{
+        margin-bottom: 30px;
+    }
+
+    input, button{
+        margin: 0 5px;
+    }
 </style>
